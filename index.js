@@ -3,7 +3,6 @@ const list = document.querySelector("#todo-list");
 
 const form = document.querySelector("form");
 const input = document.querySelector("#input");
-console.log(input);
 
 const state = {
   todos: [],
@@ -29,8 +28,33 @@ function renderTodos() {
     if (todo.completed === true) {
       li.setAttribute("class", "completed");
     }
-
+    const button = document.createElement("button");
+    button.innerText = "✔️";
     list.appendChild(li);
+    li.appendChild(button);
+    button.addEventListener("click", function () {
+      const url = `http://localhost:3000/todos/${todo.id}`;
+      const options = {
+        method: "PATCH",
+        headers: {
+          // key-value pairs
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          completed: true,
+        }),
+      };
+      fetch(url, options)
+        .then((res) => res.json())
+        .then((updatedTask) => {
+          for (let i = 0; i < state.todos.length; i++) {
+            if (state.todos[i] === todo) {
+              state.todos[i] = updatedTask;
+            }
+            break;
+          }
+        });
+    });
   });
 }
 
@@ -39,25 +63,22 @@ getAllTodos();
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const url = "http://localhost:3000/todos";
-  console.log(input.value);
   const newTask = input.value;
- const options = {
-  method: "POST",
-  headers: {
-    // key-value pairs
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    title: newTask,
-    completed: false
-  })
- }
-fetch(url, options)
-.then(res => res.json())
-.then(newTask=> {
-  state.todos.push(newTask)
-  renderTodos();
-})
-
-
+  const options = {
+    method: "POST",
+    headers: {
+      // key-value pairs
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title: newTask,
+      completed: false,
+    }),
+  };
+  fetch(url, options)
+    .then((res) => res.json())
+    .then((newTask) => {
+      state.todos.push(newTask);
+      renderTodos();
+    });
 });

@@ -2,8 +2,8 @@
   "todos": [
     {
       "id": 1,
-      "title": "Feed the cat",
-      "completed": false
+      "title": "Feed the Fish",
+      "completed": true
     },
     {
       "id": 2,
@@ -17,17 +17,17 @@
     },
     {
       "title": "Clean the kitchen",
-      "completed": false,
+      "completed": true,
       "id": 4
     },
     {
       "title": "Mop the kitchen",
-      "completed": false,
+      "completed": true,
       "id": 5
     },
     {
       "title": "Make dinner",
-      "completed": false,
+      "completed": true,
       "id": 6
     }
   ]
