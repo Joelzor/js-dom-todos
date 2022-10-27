@@ -14,6 +14,21 @@
       "id": 3,
       "title": "Fix the gutters",
       "completed": true
+    },
+    {
+      "title": "Clean the kitchen",
+      "completed": false,
+      "id": 4
+    },
+    {
+      "title": "Mop the kitchen",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "title": "Make dinner",
+      "completed": false,
+      "id": 6
     }
   ]
 }
