@@ -48,11 +48,12 @@ function renderTodos() {
         .then((res) => res.json())
         .then((updatedTask) => {
           for (let i = 0; i < state.todos.length; i++) {
-            if (state.todos[i] === todo) {
+            if (state.todos[i].id === updatedTask.id) {
               state.todos[i] = updatedTask;
+              break;
             }
-            break;
           }
+          renderTodos();
         });
     });
   });
