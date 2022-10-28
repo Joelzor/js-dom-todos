@@ -19,16 +19,6 @@
       "title": "Clean the kitchen",
       "completed": true,
       "id": 4
-    },
-    {
-      "title": "Mop the kitchen",
-      "completed": true,
-      "id": 5
-    },
-    {
-      "title": "Make dinner",
-      "completed": true,
-      "id": 6
     }
   ]
 }

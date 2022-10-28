@@ -28,11 +28,14 @@ function renderTodos() {
     if (todo.completed === true) {
       li.setAttribute("class", "completed");
     }
-    const button = document.createElement("button");
-    button.innerText = "✔️";
+    const completedButton = document.createElement("button");
+    completedButton.innerText = "✔️";
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete";
     list.appendChild(li);
-    li.appendChild(button);
-    button.addEventListener("click", function () {
+    li.appendChild(completedButton);
+    li.appendChild(deleteButton);
+    completedButton.addEventListener("click", function () {
       const url = `http://localhost:3000/todos/${todo.id}`;
       const options = {
         method: "PATCH",
@@ -54,6 +57,20 @@ function renderTodos() {
             }
           }
           renderTodos();
+        });
+    });
+
+    deleteButton.addEventListener("click", () => {
+      const url = `http://localhost:3000/todos/${todo.id}`;
+
+      const options = {
+        method: "DELETE",
+      };
+
+      fetch(url, options)
+        .then((res) => res.json())
+        .then((deletedUser) => {
+          getAllTodos();
         });
     });
   });
